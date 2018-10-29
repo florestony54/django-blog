@@ -1,0 +1,23 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+{% block content %}
+<div class="centerstage">
+  {% for post in post_list %}
+    <div class="post">
+      <div class="image">
+        <img src="{{ post.photo.url }}" alt="">
+      </div>
+      <h1>
+        <a class='post-list-title' href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a>
+      </h1>
+
+      <div class="date">
+        <p><i class= 'far fa-calendar-alt'></i> {{post.published_date|date:"d M Y"}}</p>
+      </div>
+      <a href="{% url 'post_detail' pk=post.pk %}"> <i class='fa fa-comment'></i> {{post.approve_comment.count}}</a>
+
+    </div>
+  {% endfor %}
+
+</div>
+{% endblock %}
